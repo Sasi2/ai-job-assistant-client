@@ -52,7 +52,7 @@ const Footer = () => {
               <a href="https://www.linkedin.com/in/veera-saideep-sasank-vulavakayala-49314b2b8/" className="text-muted text-decoration-none">
                 <i className="fab fa-linkedin me-1"></i>LinkedIn
               </a>
-              <a href="#" className="text-muted text-decoration-none">
+              <a href="https://sasi2.github.io/Portfolio-Website/" className="text-muted text-decoration-none">
                 <i className="fas fa-envelope me-1"></i>Contact
               </a>
             </div>
