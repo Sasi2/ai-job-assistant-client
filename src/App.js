@@ -23,9 +23,7 @@ function App() {
   const [showToast, setShowToast] = useState(false);
 
   // API base URL - will use proxy in development
-  const API_BASE_URL = process.env.NODE_ENV === 'production' 
-    ? process.env.REACT_APP_API_URL 
-    : '';
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
   // Handle form input changes
   const handleInputChange = (field, value) => {
