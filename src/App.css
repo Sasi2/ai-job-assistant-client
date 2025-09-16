@@ -1,38 +1,364 @@
+/* Warm Palette */
+:root {
+  --cream: #FAF7F0;
+  --light-brown: #D8D2C2;
+  --medium-brown: #B17457;
+  --dark-brown: #4A4947;
+  
+  --primary-gradient: linear-gradient(135deg, #B17457 0%, #4A4947 100%);
+  --success-gradient: linear-gradient(135deg, #D8D2C2 0%, #B17457 100%);
+  --warning-gradient: linear-gradient(135deg, #B17457 0%, #D8D2C2 100%);
+  --danger-gradient: linear-gradient(135deg, #4A4947 0%, #B17457 100%);
+  --info-gradient: linear-gradient(135deg, #D8D2C2 0%, #4A4947 100%);
+  --glass-bg: rgba(250, 247, 240, 0.85);
+  --glass-border: rgba(181, 116, 87, 0.18);
+  --shadow-light: 0 8px 32px rgba(74, 73, 71, 0.15);
+  --shadow-hover: 0 12px 40px rgba(74, 73, 71, 0.25);
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #FAF7F0 0%, #D8D2C2 100%);
+  min-height: 100vh;
+  line-height: 1.6;
+  color: var(--dark-brown);
+}
+
 .App {
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Fixed Headers - No Movement */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  line-height: 1.3;
+  /* Remove only the floating animation */
+  animation: none !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Glass Morphism Cards - Keep Hover Effects */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-light);
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* Buttons - Keep Hover Effects */
+.btn-gradient {
+  background: var(--primary-gradient);
+  border: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(74, 73, 71, 0.2);
+  font-weight: 600;
+  padding: 12px 30px;
+  font-size: 1rem;
+  color: var(--cream);
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(74, 73, 71, 0.3);
+}
+
+.btn-gradient:disabled {
+  opacity: 0.7;
+  transform: none;
+  cursor: not-allowed;
+}
+
+/* REMOVE ONLY THE FLOATING ANIMATION - Keep pulse */
+/* .floating-animation class removed completely */
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { 
+    box-shadow: 0 0 0 0 rgba(181, 116, 87, 0.7); 
+  }
+  70% { 
+    box-shadow: 0 0 0 10px rgba(181, 116, 87, 0); 
+  }
+  100% { 
+    box-shadow: 0 0 0 0 rgba(181, 116, 87, 0); 
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Form Controls - Keep Focus Effects */
+.custom-textarea {
+  background: rgba(250, 247, 240, 0.9);
+  border: 2px solid transparent;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  resize: vertical;
+  min-height: 120px;
+  font-family: 'Inter', sans-serif;
+  color: var(--dark-brown);
+}
+
+.custom-textarea:focus {
+  border-color: var(--medium-brown);
+  box-shadow: 0 0 20px rgba(181, 116, 87, 0.3);
+  background: rgba(250, 247, 240, 0.95);
+}
+
+/* Loading Spinner - Keep Spin Animation */
+.loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 3rem 1rem;
+  text-align: center;
+  min-height: 200px;
 }
 
-.App-link {
-  color: #61dafb;
+.spinner-custom {
+  width: 3rem;
+  height: 3rem;
+  border: 0.3rem solid var(--light-brown);
+  border-top: 0.3rem solid var(--medium-brown);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes spin {
+  0% { 
+    transform: rotate(0deg); 
   }
-  to {
-    transform: rotate(360deg);
+  100% { 
+    transform: rotate(360deg); 
   }
+}
+
+/* Result Cards - Keep Hover Effects */
+.result-section {
+  background: rgba(250, 247, 240, 0.95);
+  border-radius: 15px;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  border-left: 5px solid var(--medium-brown);
+  padding: 1.5rem;
+}
+
+.result-section:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(74, 73, 71, 0.1);
+}
+
+/* Skill Badges - Keep Hover Effects */
+.skill-badge {
+  display: inline-block;
+  background: var(--success-gradient);
+  color: var(--dark-brown);
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(74, 73, 71, 0.1);
+}
+
+.skill-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(74, 73, 71, 0.2);
+}
+
+.skill-badge.missing {
+  background: var(--warning-gradient);
+}
+
+/* Improvement Items - Keep Hover Effects */
+.improvement-item {
+  background: linear-gradient(45deg, rgba(216, 210, 194, 0.3), rgba(250, 247, 240, 0.3));
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+.improvement-item:hover {
+  transform: translateX(5px);
+  border-left-color: var(--medium-brown);
+}
+
+.improvement-item.high-priority {
+  border-left-color: var(--dark-brown);
+}
+
+.improvement-item.medium-priority {
+  border-left-color: var(--medium-brown);
+}
+
+.improvement-item.low-priority {
+  border-left-color: var(--light-brown);
+}
+
+/* Priority Badges */
+.priority-badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 15px;
+}
+
+.priority-high {
+  background: var(--danger-gradient);
+  color: var(--cream);
+}
+
+.priority-medium {
+  background: var(--warning-gradient);
+  color: var(--dark-brown);
+}
+
+.priority-low {
+  background: var(--success-gradient);
+  color: var(--dark-brown);
+}
+
+/* Progress Ring - Keep Transitions */
+.progress-ring {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.progress-ring-circle {
+  transition: stroke-dasharray 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* Navbar */
+.navbar-custom {
+  background: rgba(250, 247, 240, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.navbar-brand, .nav-link {
+  color: var(--dark-brown) !important;
+}
+
+/* Footer */
+.footer-custom {
+  background: rgba(250, 247, 240, 0.85);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--glass-border);
+  margin-top: auto;
+  padding: 2rem 0;
+  color: var(--dark-brown);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .glass-card {
+    margin: 1rem;
+    padding: 1.5rem !important;
+    border-radius: 15px;
+  }
+  
+  .btn-gradient {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .skill-badge {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    margin: 2px;
+  }
+  
+  .custom-textarea {
+    min-height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-card {
+    margin: 0.5rem;
+    padding: 1rem !important;
+  }
+  
+  .gradient-text {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Toast Notifications */
+.toast-custom {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background: rgba(181, 116, 87, 0.3);
+  color: var(--dark-brown);
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: 2px solid var(--medium-brown);
+  outline-offset: 2px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(216, 210, 194, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-gradient);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--medium-brown);
 }
